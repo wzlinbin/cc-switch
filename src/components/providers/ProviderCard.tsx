@@ -55,6 +55,7 @@ import {
 } from "@/utils/providerCapabilities";
 import { useProviderHealth } from "@/lib/query/failover";
 import { useUsageQuery } from "@/lib/query/queries";
+import { useLowBalanceAlert } from "@/hooks/useLowBalanceAlert";
 import { resolveProviderIcon } from "@/utils/providerIcon";
 import { isWorkBuddyOfficial } from "@/components/providers/workbuddyOfficial";
 import { WorkBuddyOfficialAccountLine } from "@/components/providers/WorkBuddyOfficialAccountLine";
@@ -428,9 +429,22 @@ export function ProviderCard({
   // 因为禁用的 React Query observer 仍会返回同 key 的旧缓存。
   const scriptUsageActive =
     usageEnabled && !isOfficial && !isOfficialSubscriptionUsage;
-  const { data: usage } = useUsageQuery(provider.id, appId, {
-    enabled: scriptUsageActive,
-    autoQueryInterval,
+  const { data: usage, dataUpdatedAt: usageUpdatedAt } = useUsageQuery(
+    provider.id,
+    appId,
+    {
+      enabled: scriptUsageActive,
+      autoQueryInterval,
+    },
+  );
+
+  // 余额不足桌面提醒：用量查询的新结果跌破阈值时弹系统通知（见 useLowBalanceAlert）。
+  useLowBalanceAlert({
+    providerId: provider.id,
+    appId,
+    providerName: provider.name,
+    usage,
+    dataUpdatedAt: usageUpdatedAt,
   });
 
   const isTokenPlan =

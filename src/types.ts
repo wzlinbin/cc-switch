@@ -426,6 +426,10 @@ export interface Settings {
   usageDashboardRefreshIntervalMs?: number;
   // 用量金额的显示币种与汇率（只影响显示，库里一律存美元）
   usageDisplay?: UsageDisplaySettings;
+  // 余额不足桌面提醒开关（默认开启）；用量查询的剩余额度低于阈值时弹系统通知
+  balanceAlertEnabled?: boolean;
+  // 余额不足提醒阈值（默认 5，与用量查询返回的 remaining 数值直接比较）
+  balanceAlertThreshold?: number;
   // 会话用量自动扫描开关（默认开启=自动模式；关闭后仅手动同步时扫描会话日志，代理记账不受影响）
   sessionAutoSyncEnabled?: boolean;
   // 会话页搜索消息正文（默认关闭；开启后在本地建 session-index.db 索引，关闭时删除索引）

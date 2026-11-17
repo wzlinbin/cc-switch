@@ -3,6 +3,10 @@
     "title": "CC Switch",
     "description": "Claude Code / Codex / Gemini CLI 全方位辅助工具"
   },
+  "balanceAlert": {
+    "notificationTitle": "余额不足",
+    "notificationBody": "{{provider}} 剩余额度 {{balance}}{{unit}}，低于提醒阈值 {{threshold}}，请及时充值。"
+  },
   "common": {
     "unsavedLeaveTitle": "有未保存的修改",
     "unsavedLeaveMessage": "离开后，当前编辑页里的修改不会保存。",
@@ -916,6 +920,16 @@
       "reset": "恢复默认值",
       "hint": "任一达到即暂停。默认 95% / 98%，保存后立即对新请求生效。",
       "invalid": "请输入 1–99 的整数。"
+    },
+    "balanceAlert": {
+      "title": "余额不足提醒",
+      "help": "用量查询返回的剩余额度低于阈值时，弹出一条系统通知提醒充值。每个供应商在一次低余额期间只提醒一次，余额恢复到阈值以上后重置。只对开启了用量查询的供应商生效。",
+      "threshold": "提醒阈值",
+      "thresholdLabel": "低于此额度时提醒",
+      "save": "保存阈值",
+      "reset": "恢复默认值",
+      "hint": "默认 5，与用量查询返回的剩余额度直接比较。",
+      "invalid": "请输入大于 0 的数字。"
     },
     "codexPauseOfficialLogin": {
       "title": "暂停使用官方登录",

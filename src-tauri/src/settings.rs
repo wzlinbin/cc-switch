@@ -523,6 +523,12 @@ pub struct AppSettings {
     /// 用量金额的显示币种与汇率（只影响显示）
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub usage_display: Option<UsageDisplaySettings>,
+    /// 余额不足桌面提醒开关（默认开启）；用量查询返回的剩余额度低于阈值时弹系统通知。
+    #[serde(default = "default_balance_alert_enabled")]
+    pub balance_alert_enabled: bool,
+    /// 余额不足提醒阈值（默认 5，与用量查询返回的 remaining 数值直接比较）。
+    #[serde(default = "default_balance_alert_threshold")]
+    pub balance_alert_threshold: f64,
     /// 会话用量自动扫描开关（默认开启=自动模式）。关闭后停止后台定时扫描
     /// 各客户端会话日志，仅在用户点击"立即同步"时手动扫描；只管扫描时机，
     /// 代理接管记账与启动费用回填（不读会话文件）不受此开关影响。
@@ -744,6 +750,14 @@ fn default_session_content_search_enabled() -> bool {
     false
 }
 
+fn default_balance_alert_enabled() -> bool {
+    true
+}
+
+fn default_balance_alert_threshold() -> f64 {
+    5.0
+}
+
 impl Default for AppSettings {
     fn default() -> Self {
         Self {
@@ -761,6 +775,8 @@ impl Default for AppSettings {
             usage_confirmed: None,
             usage_dashboard_refresh_interval_ms: None,
             usage_display: None,
+            balance_alert_enabled: true,
+            balance_alert_threshold: 5.0,
             session_auto_sync_enabled: true,
             session_content_search_enabled: false,
             enable_failover_toggle: false,

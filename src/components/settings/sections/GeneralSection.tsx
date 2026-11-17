@@ -22,6 +22,7 @@ import {
   type ZoomLevel,
 } from "@/lib/interfacePrefs";
 import { TerminalSelect } from "@/components/settings/TerminalSettings";
+import { BalanceAlertSettings } from "@/components/settings/BalanceAlertSettings";
 import {
   SettingsBlock,
   SettingsCard,
@@ -173,6 +174,15 @@ export function GeneralSection({
                 }))}
               />
             }
+          />
+        </SettingsCard>
+      </SettingsBlock>
+
+      <SettingsBlock title={t("settings.balanceAlert.title")}>
+        <SettingsCard>
+          <BalanceAlertSettings
+            settings={settings}
+            onChange={(updates) => onAutoSave(updates)}
           />
         </SettingsCard>
       </SettingsBlock>

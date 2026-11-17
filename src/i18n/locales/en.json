@@ -3,6 +3,10 @@
     "title": "CC Switch",
     "description": "All-in-One Assistant for Claude Code, Codex & Gemini CLI"
   },
+  "balanceAlert": {
+    "notificationTitle": "Low balance",
+    "notificationBody": "{{provider}} has {{balance}}{{unit}} remaining, below the alert threshold of {{threshold}}. Please top up soon."
+  },
   "common": {
     "unsavedLeaveTitle": "Unsaved changes",
     "unsavedLeaveMessage": "If you leave, the changes on this editor page will not be saved.",
@@ -916,6 +920,16 @@
       "reset": "Restore defaults",
       "hint": "Pause at either cutoff. Defaults: 95% / 98%. Saved changes apply to new requests immediately.",
       "invalid": "Enter whole numbers from 1 to 99."
+    },
+    "balanceAlert": {
+      "title": "Low balance alert",
+      "help": "Show a system notification when a usage query reports a remaining balance below the threshold. Each provider is notified at most once per low-balance episode; the alert resets once the balance recovers above the threshold. Only applies to providers with usage queries enabled.",
+      "threshold": "Alert threshold",
+      "thresholdLabel": "Alert when balance falls below",
+      "save": "Save threshold",
+      "reset": "Restore default",
+      "hint": "Default is 5, compared directly against the remaining balance reported by the usage query.",
+      "invalid": "Enter a number greater than 0."
     },
     "codexPauseOfficialLogin": {
       "title": "Pause the official login",
